@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - NiaConnect</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .logo {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .forgot-password {
+            text-align: right;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #4285F4;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .create-account {
+            color: #4285F4;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <main class="login-container">
+        <div class="login-box">
+            <img src="logo.png" alt="NiaConnect Logo" class="logo">
+            <h2>Sign in</h2>
+            <p>Use your NiaConnect Account</p>
+            <form id="login-form">
+                <div class="input-group">
+                    <input type="email" id="email" name="email" placeholder="Email or phone" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <p class="forgot-password"><a href="reset-password.html">Forgot password?</a></p>
+                <div class="button-group">
+                    <a href="register.html" class="create-account">Create account</a>
+                    <button type="submit" class="btn">Next</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script>
+        $(document).ready(function() {
+            $('#login-form').on('submit', function(e) {
+                e.preventDefault();
+                let email = $('#email').val();
+                let password = $('#password').val();
+                if(email === '' || password === '') {
+                    alert('Please fill in all fields.');
+                    return;
+                }
+                alert('Login successful!');
+            });
+        });
+    </script>
+</body>
+</html>

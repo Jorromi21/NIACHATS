@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - NiaConnect</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1em;
+        }
+        header nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar {
+            width: 20%;
+            text-align: center;
+        }
+        .profile-pic img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        .main-content {
+            width: 55%;
+        }
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .profile-header button, .sidebar button, #post-btn {
+            padding: 10px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .profile-header button:hover, .sidebar button:hover, #post-btn:hover {
+            background-color: #004099;
+        }
+        .posts {
+            margin-top: 20px;
+        }
+        .post {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .chatroom-list {
+            width: 20%;
+        }
+        .chatroom-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .chatroom-list li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f4f4f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .chatroom-list li:hover {
+            background-color: #e4e4e9;
+        }
+        #post-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NiaConnect</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Profile</a>
+            <a href="#">Messages</a>
+            <a href="#">Notifications</a>
+            <a href="#">Settings</a>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-pic">
+                <img src="profile.jpg" alt="Profile Picture">
+            </div>
+            <h2 id="username">Gabriel Jorrojjick</h2>
+            <p id="bio">This is the user's bio.</p>
+            <button id="edit-profile-btn">Edit Profile</button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="profile-header">
+                <h2>Posts</h2>
+            </div>
+            <textarea id="post-input" placeholder="What's on your mind?"></textarea>
+            <button id="post-btn">Post</button>
+            <div class="posts" id="posts">
+                <!-- User posts will be dynamically added here -->
+            </div>
+        </main>
+
+        <!-- Chatroom List -->
+        <aside class="chatroom-list">
+            <h2>Join Chatroom</h2>
+            <ul id="chatrooms">
+                <li>General Discussions</li>
+                <li>Engineering Faculty</li>
+                <li>Business Studies</li>
+                <li>Political Science</li>
+                <li>Medical and Health Science</li>
+            </ul>
+        </aside>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            let posts = [];
+
+            function loadPosts() {
+                $("#posts").html("");
+                posts.forEach((post, index) => {
+                    $("#posts").append(`<div class="post">${post} <button onclick="deletePost(${index})">Delete</button></div>`);
+                });
+            }
+
+            $("#post-btn").click(function () {
+                let postText = $("#post-input").val();
+                if (postText.trim() !== "") {
+                    posts.push(postText);
+                    $("#post-input").val("");
+                    loadPosts();
+                }
+            });
+
+            window.deletePost = function (index) {
+                posts.splice(index, 1);
+                loadPosts();
+            };
+
+            $("#edit-profile-btn").click(function () {
+                let newUsername = prompt("Enter new username:", $("#username").text());
+                let newBio = prompt("Enter new bio:", $("#bio").text());
+
+                if (newUsername) $("#username").text(newUsername);
+                if (newBio) $("#bio").text(newBio);
+            });
+
+            $("#chatrooms li").click(function () {
+                alert("Redirecting to " + $(this).text() + " chatroom...");
+            });
+        });
+    </script>
+</body>
+</html>

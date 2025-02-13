@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact NiaConnect for any inquiries or support.">
+    <title>Contact Us - NiaConnect</title>
+
+    <!-- Embedded CSS -->
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+            color: #333;
+            font-size: 14px;
+        }
+
+        h1, h2, h3 {
+            color: #0056b3;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0056b3;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header .logo {
+            font-size: 2em;
+            color: white;
+        }
+
+        /* Contact Section Styles */
+        .contact-section {
+            padding: 40px 20px;
+            background-color: white;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        .contact-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .contact-section p {
+            margin-bottom: 20px;
+        }
+
+        .contact-section .info {
+            margin-bottom: 20px;
+        }
+
+        .contact-section .info h3 {
+            margin-bottom: 10px;
+        }
+
+        .contact-section .info p {
+            margin-bottom: 10px;
+        }
+
+        .contact-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-section form input,
+        .contact-section form textarea {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contact-section form button {
+            padding: 10px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .contact-section form button:hover {
+            background-color: #004099;
+        }
+
+        .info ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .info ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #0056b3;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer .footer-content p {
+            margin-bottom: 10px;
+        }
+
+        .social-icons {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .social-icons a {
+            color: #0056b3;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.4em;
+        }
+    </style>
+
+    <!-- JSON Data -->
+    <script type="application/json" id="regionData">
+        [
+            { "country": "Algeria", "code": "+213" },
+            { "country": "Angola", "code": "+244" },
+            { "country": "Benin", "code": "+229" },
+            { "country": "Botswana", "code": "+267" },
+            { "country": "Burkina Faso", "code": "+226" },
+            { "country": "Burundi", "code": "+257" },
+            { "country": "Cape Verde", "code": "+238" },
+            { "country": "Cameroon", "code": "+237" },
+            { "country": "Central African Republic", "code": "+236" },
+            { "country": "Chad", "code": "+235" },
+            { "country": "Comoros", "code": "+269" },
+            { "country": "Congo (Congo-Brazzaville)", "code": "+242" },
+            { "country": "Congo (DRC)", "code": "+243" },
+            { "country": "Djibouti", "code": "+253" },
+            { "country": "Egypt", "code": "+20" },
+            { "country": "Equatorial Guinea", "code": "+240" },
+            { "country": "Eritrea", "code": "+291" },
+            { "country": "Eswatini (fmr. Swaziland)", "code": "+268" },
+            { "country": "Ethiopia", "code": "+251" },
+            { "country": "Gabon", "code": "+241" },
+            { "country": "Gambia", "code": "+220" },
+            { "country": "Ghana", "code": "+233" },
+            { "country": "Guinea", "code": "+224" },
+            { "country": "Guinea-Bissau", "code": "+245" },
+            { "country": "Ivory Coast", "code": "+225" },
+            { "country": "Kenya", "code": "+254" },
+            { "country": "Lesotho", "code": "+266" },
+            { "country": "Liberia", "code": "+231" },
+            { "country": "Libya", "code": "+218" },
+            { "country": "Madagascar", "code": "+261" },
+            { "country": "Malawi", "code": "+265" },
+            { "country": "Mali", "code": "+223" },
+            { "country": "Mauritania", "code": "+222" },
+            { "country": "Mauritius", "code": "+230" },
+            { "country": "Morocco", "code": "+212" },
+            { "country": "Mozambique", "code": "+258" },
+            { "country": "Namibia", "code": "+264" },
+            { "country": "Niger", "code": "+227" },
+            { "country": "Nigeria", "code": "+234" },
+            { "country": "Rwanda", "code": "+250" },
+            { "country": "Sao Tome and Principe", "code": "+239" },
+            { "country": "Senegal", "code": "+221" },
+            { "country": "Seychelles", "code": "+248" },
+            { "country": "Sierra Leone", "code": "+232" },
+            { "country": "Somalia", "code": "+252" },
+            { "country": "South Africa", "code": "+27" },
+            { "country": "South Sudan", "code": "+211" },
+            { "country": "Sudan", "code": "+249" },
+            { "country": "Tanzania", "code": "+255" },
+            { "country": "Togo", "code": "+228" },
+            { "country": "Tunisia", "code": "+216" },
+            { "country": "Uganda", "code": "+256" },
+            { "country": "Zambia", "code": "+260" },
+            { "country": "Zimbabwe", "code": "+263" }
+        ]
+    </script>
+
+    <!-- jQuery and JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Fetching region data from the JSON object
+            var regionData = JSON.parse($("#regionData").html());
+
+            // Iterating over each country and adding its contact number to the list
+            regionData.forEach(function (region) {
+                var contactNumber1 = region.code + "762622330";
+                var contactNumber2 = region.code + "621132330";
+                var listItem = "<li><strong>" + region.country + ":</strong> " + contactNumber1 + " / " + contactNumber2 + "</li>";
+                $("#contactList").append(listItem);
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">NiaConnect</div>
+    </header>
+
+    <section class="contact-section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need support, feel free to reach out to us.</p>
+
+            <div class="info">
+                <h3>Contact Information</h3>
+                <p><strong>Email:</strong> contact@niaconnect.com</p>
+            </div>
+
+            <div class="info">
+                <h3>Our Regional Contact Numbers</h3>
+                <ul id="contactList"></ul>
+            </div>
+
+            <form>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="text" name="subject" placeholder="Subject" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 NiaConnect. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NiaConnect is a platform connecting students and teachers across Africa, offering personalized learning recommendations, AI-powered chatrooms, and more.">
+    <title>About Us - NiaConnect</title>
+
+    <!-- Embedded CSS -->
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #0056b3;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0056b3;
+            padding: 20px 0;
+        }
+
+        header .logo h1 {
+            text-align: center;
+            margin: 0;
+        }
+
+        header .logo a {
+            color: white;
+            text-decoration: none;
+            font-size: 2em;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        /* About Section Styles */
+        .about-section {
+            padding: 40px 20px;
+            background-color: white;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        .about-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .about-section ul {
+            list-style: none;
+            text-align: left;
+            margin: 20px 0;
+            padding-left: 20px;
+            display: inline-block;
+        }
+
+        .about-section ul li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .about-section ul li strong {
+            color: #0056b3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #0056b3;;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer .footer-content p {
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <!-- JSON Data -->
+    <script type="application/json" id="aboutData">
+        {
+            "title": "About NiaConnect",
+            "description": "NiaConnect is a platform designed to connect students and educators across Africa. With AI-powered tools, we provide personalized learning recommendations, chatrooms for discussions, and donor matching. Our mission is to make education more accessible, interactive, and effective.",
+            "features": [
+                {
+                    "title": "Personalized Learning Recommendations",
+                    "description": "Tailored suggestions for courses and resources based on user behavior."
+                },
+                {
+                    "title": "AI-Powered Chatrooms",
+                    "description": "Course-specific chatrooms for seamless collaboration between students and teachers."
+                },
+                {
+                    "title": "Donor & Sponsor Matching",
+                    "description": "Connecting students with donors and sponsors based on academic performance and financial needs."
+                },
+                {
+                    "title": "Course-Based Learning",
+                    "description": "Students automatically join chatrooms related to their courses, ensuring focused discussions and better learning outcomes."
+                },
+                {
+                    "title": "Real-Time Moderation & Plagiarism Detection",
+                    "description": "Keeping the platform safe and fostering honest academic engagement."
+                }
+            ]
+        }
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <h1><a href="home.html">NiaConnect</a></h1>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about us.html">About</a></li>
+                <li><a href="contact us.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="about-section">
+        <div class="container">
+            <h2 id="pageTitle"></h2>
+            <p id="pageDescription"></p>
+
+            <h3>Our Key Features:</h3>
+            <ul id="featureList"></ul>
+
+            <p>NiaConnect is more than just a platform; it's a community of learners and educators working together to shape a brighter future for African students.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 NiaConnect. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Embedded jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery Script to Populate Content -->
+    <script>
+        $(document).ready(function () {
+            var aboutData = JSON.parse($('#aboutData').text());
+
+            // Set Page Title and Description
+            $('#pageTitle').text(aboutData.title);
+            $('#pageDescription').text(aboutData.description);
+
+            // Populate Features
+            var featureList = $('#featureList');
+            aboutData.features.forEach(function (feature) {
+                var listItem = '<li><strong>' + feature.title + ':</strong> ' + feature.description + '</li>';
+                featureList.append(listItem);
+            });
+        });
+    </script>
+</body>
+
+</html>

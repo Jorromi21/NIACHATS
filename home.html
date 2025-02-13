@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nia Connect - Uniting African Students, Educators, and Sponsors for Education and Growth">
+  <title>Nia Connect</title>
+  
+  <style>
+    /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Body Styles */
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background-color: #002d62;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header.h1{
+  color: white;
+  text-decoration: none;
+  font color: white;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 90px;
+  margin-right: 50px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  background-color: #004080;
+  color: white;
+  padding: 50px 20px;
+}
+
+.hero .cta-buttons .btn-primary,
+.hero .cta-buttons .btn-secondary {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #00aaff;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #004080;
+  border: 2px solid #004080;
+}
+
+/* Featured Forums */
+.featured-forums {
+  padding: 20px;
+  background-color: white;
+  margin: 20px;
+  border-radius: 8px;
+}
+
+.featured-forums .forum-list {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.forum-card {
+  flex: 1 1 calc(25% - 10px);
+  background-color: #004080;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.featured-forums a {
+  color: white;
+  text-decoration: none; /* Removed the underline from links */
+}
+
+.forum-list .a {
+  color: #e6f7ff;
+}
+
+/* Sponsorship Section */
+.sponsorship {
+  background-color: #e6f7ff;
+  padding: 20px;
+  text-align: center;
+}
+
+.sponsorship .btn-primary {
+  margin: 10px;
+}
+
+/* Footer */
+footer {
+  background-color: #002d62;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+footer ul li {
+  margin: 0 10px;
+}
+
+footer ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+  </style>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // jQuery AJAX to simulate forum data fetching
+    $(document).ready(function() {
+      // Simulated JSON response
+      const forums = [
+        { name: "Computer Science", link: "computer science.html" },
+        { name: "Agricultural Studies", link: "agric.html" },
+        { name: "Business Studies", link: "economics.html" },
+        { name: "Medical and Health Science", link: "medical.html" },
+        { name: "Economics", link: "economics.html" },
+        { name: "Cybersecurity", link: "" },
+        { name: "Musical Studies", link: "musical.html" },
+        { name: "Bible Studies", link: "bible studies.html" },
+        { name: "Military and Security Studies", link: "military" },
+        { name: "Transport and Communication", link: "transport.html" },
+        { name: "General Discussions", link: "#" }
+      ];
+
+      // Populate forum cards
+      forums.forEach(function(forum) {
+        $('.forum-list').append(`<a href="${forum.link}" class="forum-card">${forum.name}</a>`);
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo-title">
+      <img src="logo.png" alt="Nia Connect Logo" class="logo">
+      <h1>Nia Connect</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="donor.html">Donate</a></li>
+        <li><a href="">Events</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Connecting African Minds for a Brighter Future</h2>
+      <p>Join students, Educators, and Sponsors across Africa in a unified learning experience.</p>
+      <div class="cta-buttons">
+        <a href="registration.html" class="btn-primary">Join Now</a>
+        <a href="about us.html" class="btn-secondary">Learn More</a>
+      </div>
+    </section>
+
+    <section class="featured-forums">
+      <h2>Featured Forums</h2>
+      <div class="forum-list">
+        <!-- Forum cards will be injected here via jQuery -->
+      </div>
+    </section>
+
+    <section class="sponsorship">
+      <h2>Support Education</h2>
+      <p>Help fund competitive students or sponsor young children in need of education.</p>
+      <div class="cta-buttons">
+        <a href="donor.html" class="btn-primary">Sponsor Students</a>
+        <a href="donor.html" class="btn-secondary">Sponsor Children</a>
+      </div>
+    </section>
+
+    <section class="upcoming-events">
+      <h2>Upcoming Events</h2>
+      <ul>
+        <li>Webinar on Data Science - March 15, 2025</li>
+        <li>Scholarship Application Q&A - April 10, 2025</li>
+        <li>African Education Summit - Feb 20, 2025</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Nia Connect. All rights reserved.</p>
+    <ul>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Service</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+  </footer>
+</body>
+</html>

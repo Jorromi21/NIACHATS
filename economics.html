@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economics Chatroom</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        header img {
+            width: 50px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar, .user-list {
+            width: 20%;
+        }
+        .main-content {
+            width: 55%;
+        }
+        .chat-window {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        .message {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        .message:last-child {
+            border-bottom: none;
+        }
+        .message .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .message .username {
+            font-weight: bold;
+            color: #0056b3;
+        }
+        .message .text {
+            margin-top: 5px;
+        }
+        .message .file {
+            margin-top: 5px;
+        }
+        .message-form {
+            display: flex;
+            gap: 10px;
+        }
+        .message-form input[type="text"],
+        .message-form input[type="file"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .message-form button {
+            padding: 10px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .message-form button:hover {
+            background-color: #004099;
+        }
+        .sidebar li, .user-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .sidebar .icon, .user-list .profile-pic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        footer {
+            background-color: #0056b3;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><img src="logo.png" alt="Logo">Economics and Finance Chatroom</h1>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Channels</h2>
+            <ul id="channels">
+                <li><img src="general.png" alt="General" class="icon">General</li>
+                <li><img src="assignments.png" alt="Assignments" class="icon">Assignments</li>
+                <li><img src="projects.png" alt="Projects" class="icon">Projects</li>
+                <li><img src="exams.png" alt="Exams" class="icon">Exams</li>
+                <li><img src="resources.png" alt="Resources" class="icon">Resources</li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <div class="chat-window" id="chatWindow">
+                <!-- Messages will appear here -->
+            </div>
+            <form class="message-form" id="messageForm">
+                <input type="text" id="messageInput" placeholder="Type your message...">
+                <input type="file" id="fileInput">
+                <button type="submit">Send</button>
+            </form>
+        </main>
+        <aside class="user-list">
+            <h2>Members</h2>
+            <ul id="users">
+                <li><img src="gabriel.png" alt="Gabriel" class="profile-pic">Gabriel</li>
+                <li><img src="chotta.png" alt="Chotta" class="profile-pic">Chotta</li>
+                <li><img src="peace.png" alt="Peace" class="profile-pic">Peace</li>
+                <li><img src="coder.png" alt="Coder" class="profile-pic">Coder</li>
+                <li><img src="denzel.png" alt="Denzel" class="profile-pic">Denzel</li>
+            </ul>
+        </aside>
+    </div>
+    <footer>
+        <p>&copy; 2025 NiaConnect. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const chatWindow = $('#chatWindow');
+            const messageForm = $('#messageForm');
+            const messageInput = $('#messageInput');
+            const fileInput = $('#fileInput');
+
+            messageForm.on('submit', function (event) {
+                event.preventDefault();
+                const messageText = messageInput.val().trim();
+                const file = fileInput[0].files[0];
+
+                if (messageText !== '' || file) {
+                    const messageElement = $('<div class="message">');
+
+                    // Add profile picture (assuming user's profile picture URL is known)
+                    messageElement.append('<img src="admin.jpg" alt="User" class="profile-pic">');
+
+                    if (messageText !== '') {
+                        messageElement.append(`<div><div class="username">Admin:</div><div class="text">${messageText}</div></div>`);
+                    }
+
+                    if (file) {
+                        const fileUrl = URL.createObjectURL(file);
+                        messageElement.append(`<div class="file"><a href="${fileUrl}" target="_blank">${file.name}</a></div>`);
+                    }
+
+                    chatWindow.append(messageElement);
+                    messageInput.val('');
+                    fileInput.val('');
+                    chatWindow.scrollTop(chatWindow.prop('scrollHeight'));
+                }
+            });
+        });
+    </script>
+</body>
+</html>

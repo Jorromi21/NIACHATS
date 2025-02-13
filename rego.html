@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nia Registration</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        .form-container img.logo {
+            max-width: 40%;
+            height: auto;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }        
+        
+        .form-container h2 {
+            color: #1a73e8;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #135bb5;
+        }
+        .optional-fields {
+            display: none;
+        }
+        .form-group {
+            text-align: left;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            margin: 15% auto;
+            width: 300px;
+            border-radius: 10px;
+        }
+        .modal-content input {
+            margin: 10px 0;
+        }
+        .modal-content button {
+            background: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <img src="logo.png" alt="NiaConnect Logo" class="logo">
+        <h2>Nia Registration</h2>
+        <form id="registration-form">
+            <!-- Name and Contact Information -->
+            <input type="text" id="name" name="name" placeholder="Full Name" required>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+
+            <!-- Gender Selection -->
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <!-- Role Selection -->
+            <div class="form-group">
+                <label for="role">I am joining as:</label>
+                <select id="role" name="role" required>
+                    <option value="">Select Role</option>
+                    <option value="student">Student</option>
+                    <option value="donor">Donor</option>
+                    <option value="facilitator">Facilitator</option>
+                </select>
+            </div>
+
+            <!-- Student Role Fields -->
+            <div class="optional-fields student-fields">
+                <label for="university-reg-num">University Registration Number:</label>
+                <input type="text" id="university-reg-num" name="university-reg-num" placeholder="University Registration Number" required>
+
+                <!-- File Uploads -->
+                <label for="student-id-card">Upload Student ID Card:</label>
+                <input type="file" id="student-id-card" name="student-id-card" accept="image/*, .pdf" required>
+
+                <label for="passport-photo">Upload Passport Photo:</label>
+                <input type="file" id="passport-photo" name="passport-photo" accept="image/*" required>
+            </div>
+
+            <!-- Donor Role Fields -->
+            <div class="optional-fields donor-fields">
+                <label for="donor-contact">Donor Contact Information:</label>
+                <input type="text" id="donor-contact" name="donor-contact" placeholder="Contact Info (Email or Phone)" required>
+            </div>
+
+            <!-- Facilitator Role Fields -->
+            <div class="optional-fields facilitator-fields">
+                <label for="facilitator-email">Facilitator University Email:</label>
+                <input type="email" id="facilitator-email" name="facilitator-email" placeholder="University Email" required>
+
+                <label for="facilitator-universities">Universities You Teach At:</label>
+                <input type="text" id="facilitator-universities" name="facilitator-universities" placeholder="List of Universities" required>
+
+                <label for="facilitator-id">Upload Teacher ID or Employment Contract:</label>
+                <input type="file" id="facilitator-id" name="facilitator-id" accept="image/*, .pdf" required>
+            </div>
+
+            <!-- Common Fields -->
+            <select id="region" required>
+                <option value="">Select Region</option>
+            </select>
+
+            <select id="country" required>
+                <option value="">Select Country</option>
+            </select>
+
+            <select id="university" required>
+                <option value="">Select University</option>
+            </select>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <!-- OTP Modal -->
+    <div id="otpModal" class="modal">
+        <div class="modal-content">
+            <h3>Enter OTP</h3>
+            <input type="text" id="otp-input" placeholder="Enter OTP" required>
+            <button id="verify-otp">Verify OTP</button>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Fetch African regions dynamically
+            fetch("https://restcountries.com/v3.1/region/Africa")
+                .then(response => response.json())
+                .then(data => {
+                    let regions = new Set();
+                    data.forEach(country => {
+                        if (country.subregion) regions.add(country.subregion);
+                    });
+
+                    $('#region').empty().append(new Option("Select Region", ""));
+                    regions.forEach(region => {
+                        $('#region').append(new Option(region, region));
+                    });
+                });
+
+            // Fetch countries based on selected region
+            $('#region').change(function () {
+                let selectedRegion = $(this).val();
+                $('#country').empty().append(new Option("Select Country", ""));
+                $('#university').empty().append(new Option("Select University", ""));
+
+                fetch("https://restcountries.com/v3.1/region/Africa")
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(country => {
+                            if (country.subregion === selectedRegion) {
+                                $('#country').append(new Option(country.name.common, country.name.common));
+                            }
+                        });
+                    });
+            });
+
+            // Fetch universities based on selected country
+            $('#country').change(function () {
+                let selectedCountry = $(this).val();
+                $('#university').empty().append(new Option("Select University", ""));
+                if (selectedCountry === "Tanzania") {
+                    // Predefined list of Tanzanian universities
+                    const tanzaniaUniversities =[_{{{CITATION{{{_4{](https://github.com/haqnawazwgbm/Graanahub/tree/7f0cf636a833f475f9bf47a452eb87908408deb3/application%2Fviews%2Fusers%2Fuser_form.php)[_{{{CITATION{{{_3{](https://github.com/lashka12/Travelo-Website/tree/48034500ebd76ca2eabdcd20eae49a1d1a47fded/Travelo%2FSystem%2Findex.php)[_{{{CITATION{{{_2{](https://github.com/sarthi42/Doctor-Portal/tree/d35c5baa34f05d3101d979ae83bf5e8a7c939ab9/Doc-apointment-sys%2Fprofile.php)[_{{{CITATION{{{_1{](https://github.com/buribalazs/smooth-drag-order/tree/7b40d21d076c3e31765f61481f537beaf4c5ec9f/README.md)

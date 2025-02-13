@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NiaConnect Donors page.">
+    <title>Donors - NiaConnect</title>
+
+    <!-- Embedded CSS -->
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+            color: #333;
+            font-size: 14px;
+        }
+
+        h1, h2, h3 {
+            color: #0056b3;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0056b3;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header .logo {
+            font-size: 2em;
+            color: white;
+        }
+
+        header .logo img {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+
+        /* Donor Section Styles */
+        .donor-section {
+            padding: 40px 20px;
+            background-color: white;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        .donor-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .donor-section h2 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .donor-section p {
+            margin-bottom: 20px;
+        }
+
+        .donor-section .form-group {
+            margin-bottom: 20px;
+        }
+
+        .donor-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .donor-section form input,
+        .donor-section form textarea,
+        .donor-section form select {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .donor-section form button {
+            padding: 10px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .donor-section form button:hover {
+            background-color: #004099;
+        }
+
+        .impact-stories, .current-projects, .donor-recognition, .financial-transparency, .volunteer-opportunities, .faqs, .newsletter-signup, .sponsored-students {
+            margin-bottom: 40px;
+        }
+
+        .donation-options button, .volunteer-opportunities button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .donation-options button:hover, .volunteer-opportunities button:hover {
+            background-color: #004099;
+        }
+
+        .financial-transparency ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .financial-transparency ul li {
+            margin-bottom: 10px;
+        }
+
+        .sponsored-students .student-profile {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .sponsored-students .student-profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .payment-methods img {
+            width: 50px;
+            margin: 0 10px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer .footer-content p {
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <!-- JSON Data for Impact Stories, Projects, FAQs, and Sponsored Students -->
+    <script type="application/json" id="donorData">
+        {
+            "impactStories": [
+                { "title": "Empowering Future Leaders", "description": "Your contributions have helped hundreds of students achieve their academic dreams." },
+                { "title": "Building a Better Future", "description": "Donor support has enabled us to build new classrooms and provide essential educational materials." }
+            ],
+            "currentProjects": [
+                { "title": "Tech for All", "description": "Providing laptops and internet access to students in remote areas.", "goal": "$50,000" },
+                { "title": "Scholarship Fund", "description": "Funding scholarships for underprivileged students.", "goal": "$100,000" }
+            ],
+            "faqs": [
+                { "question": "How can I make a donation?", "answer": "You can make a donation through our secure online payment system." },
+                { "question": "Are donations tax-deductible?", "answer": "Yes, all donations are tax-deductible to the fullest extent allowed by law." }
+            ],
+            "sponsoredStudents": [
+                { "name": "Christian Christopher", "country": "Tanzania", "course": "Software Engineering", "description": "Christian is passionate about coding and technology.", "profilePicture": "christian.png" },
+                { "name": "Khalifa Khalid", "country": "Kenya", "course": "Civil Engineering", "description": " Khalifa aspires to build sustainable infrastructure in Africa.", "profilePicture": "khalifa.png" },
+                { "name": "Kwame Adom", "country": "Ghana", "course": "Medicine", "description": " Kwame aspires to serve his community as a doctor.", "profilePicture": "kwame.png" },
+                { "name": "Amina Gwila", "country": "Somalia", "course": "Political Science", "description": " Amina is passionate about leadership and social change.", "profilePicture": "amina.png" },
+                { "name": "Taargiye Ghebreyesus", "country": "Ethiopia", "course": "International Relations", "description": " Taargiye aims to contribute to peacebuilding in Africa.", "profilePicture": "taargiye.png" }
+            ]
+        }
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="NiaConnect Logo">
+            NiaConnect
+        </div>
+    </header>
+
+    <section class="donor-section">
+        <div class="container">
+            <h2>Welcome Donors</h2>
+            <p>Thank you for your generous support. Your contributions make a significant impact on the lives of students and educators across Africa.</p>
+
+            <div class="form-group">
+                <h3>Donor Information Form</h3>
+                <form>
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="tel" name="phone" placeholder="Your Phone Number" value="+255762622330" required>
+                    <select name="supportArea" required>
+                        <option value="" disabled selected>Preferred Area of Support</option>
+                        <option value="education">Education</option>
+                        <option value="technology">Technology</option>
+                        <option value="scholarships">Scholarships</option>
+                    </select>
+                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+
+            <div class="impact-stories">
+                <h3>Impact Stories</h3>
+                <div id="impactStories"></div>
+            </div>
+
+            <div class="current-projects">
+                <h3>Current Projects</h3>
+                <div id="currentProjects"></div>
+            </div>
+
+            <div class="donation-options">
+                <h3>Donation Options</h3>
+                <p>You can contribute through one-time donations, recurring donations, or sponsorships.</p>
+                <button type="button">Donate Now</button>
+                <div class="payment-methods">
+                    <a href="#"><img src="visa.png" alt="Visa"></a>
+                    <a href="#"><img src="paypal.png" alt="PayPal"></a>
+                    <a href="#"><img src="mastercard.png" alt="Mastercard"></a>
+                    <a href="#"><img src="mpesa.png" alt="M-Pesa"></a>
+                    <a href="#"><img src="airtelmoney.png" alt="Airtel Money"></a>
+                </div>
+            </div>
+
+            <div class="donor-recognition">
+                <h3>Donor Recognition</h3>
+                <p>We appreciate and acknowledge the contributions of our donors through our donor wall and special mentions in our annual reports.</p>
+            </div>
+
+            <div class="financial-transparency">
+                <h3>Financial Transparency</h3>
+                <p>We are committed to transparency. Here are our financial statements and reports:</p>
+                <ul>
+                    <li><a href="#">Financial Report 2025</a></li>
+                    <li><a href="#">Financial Report 2026</a></li>
+                </ul>
+            </div>
+
+            <div class="volunteer-opportunities">
+                <h3>Volunteer Opportunities</h3>
+                <p>Get involved beyond financial contributions. Volunteer for events, mentor students, or participate in fundraising activities.</p>
+                <button type="button">Become a Volunteer</button>
+            </div>
+
+            <div class="sponsored-students">
+                <h3>Sponsored Students</h3>
+                <div id="sponsoredStudents"></div>
+            </div>
+
+            <div class="faqs">
+                <h3>FAQs</h3>
+                <div id="faqList"></div>
+            </div>
+
+            <div class="newsletter-signup">
+                <h3>Sign up for our Newsletter</h3>
+                <form>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 NiaConnect. All Rights Reserved.</p>
+            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const impactStories = JSON.parse(document.getElementById("donorData").textContent).impactStories;
+        const currentProjects = JSON.parse(document.getElementById("donorData").textContent).currentProjects;
+        const sponsoredStudents = JSON.parse(document.getElementById("donorData").textContent).sponsoredStudents;
+        const faqs = JSON.parse(document.getElementById("donorData").textContent).faqs;
+
+        const impactStoriesContainer = document.getElementById("impactStories");
+        const currentProjectsContainer = document.getElementById("currentProjects");
+        const sponsoredStudentsContainer = document.getElementById("sponsoredStudents");
+        const faqListContainer = document.getElementById("faqList");
+
+        impactStories.forEach(story => {
+            const storyElement = document.createElement("div");
+            storyElement.innerHTML = `<strong>${story.title}</strong><p>${story.description}</p>`;
+            impactStoriesContainer.appendChild(storyElement);
+        });
+
+        currentProjects.forEach(project => {
+            const projectElement = document.createElement("div");
+            projectElement.innerHTML = `<strong>${project.title}</strong><p>${project.description}</p><p><strong>Goal:</strong> ${project.goal}</p>`;
+            currentProjectsContainer.appendChild(projectElement);
+        });
+
+        sponsoredStudents.forEach(student => {
+            const studentElement = document.createElement("div");
+            studentElement.classList.add("student-profile");
+            studentElement.innerHTML = `<img src="${student.profilePicture}" alt="${student.name}'s profile picture"><strong>${student.name}</strong><p>Country: ${student.country}</p><p>Course: ${student.course}</p><p>${student.description}</p>`;
+            sponsoredStudentsContainer.appendChild(studentElement);
+        });
+
+        faqs.forEach(faq => {
+            const faqElement = document.createElement("div");
+            faqElement.innerHTML = `<strong>${faq.question}</strong><p>${faq.answer}</p>`;
+            faqListContainer.appendChild(faqElement);
+        });
+    </script>
+
+</body>
+
+</html>
